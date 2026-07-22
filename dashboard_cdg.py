@@ -12,7 +12,10 @@ with col_titre:
     st.title("📊 Dashboard Contrôle de Gestion")
 
 with col_logo:
-    st.image("C:/Users/florian/pandas_project/logo.png", width=150)
+    try:
+        st.image("logo.png", width=150)  # ✅ chemin relatif
+    except:
+        pass  # si pas de logo, on continue sans erreur
 
 st.markdown("---")
 
@@ -83,8 +86,3 @@ ax.yaxis.set_major_formatter(
 )
 
 st.pyplot(fig)
-
-
-
-
-
