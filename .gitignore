@@ -1,0 +1,6 @@
+*.xlsx
+*.xls
+*.png
+__pycache__/
+my_venvpandas_project/
+config.py
