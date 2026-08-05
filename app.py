@@ -10,7 +10,11 @@ st.set_page_config(
 col_titre, col_logo = st.columns([4, 1])
 with col_titre:
     st.title("📊 Dashboard Contrôle de Gestion")
-
+with col_logo:
+    try:
+        st.image("logo.png", width=150)
+    except:
+        pass
 
 st.markdown("---")
 
@@ -20,8 +24,8 @@ st.markdown("""
 Utilise le menu à gauche pour naviguer entre les sections :
 
 - 📌 **Vue Globale** — KPIs consolidés et synthèse
-- 🔍 **Analyse par BU** — Drill-down par Business Unit
+- 🔍 **Analyse par site** — Drill-down par site et marque
 - 📈 **Graphiques** — Visualisations interactives
 - 📋 **Données** — Tableau complet et export
-
+- ⚙️ **Pipeline** — Chargement et analyse des données
 """)
