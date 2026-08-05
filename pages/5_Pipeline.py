@@ -14,7 +14,8 @@ st.markdown("---")
 CHEMIN_META = "C:/Users/florian/pandas_project/data/output/metadata.json"
 
 # Ajouter le dossier pipeline au chemin
-sys.path.append("C:/Users/florian/pandas_project/pipeline")
+import os
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), "pipeline"))
 from transformation import transformer_donnees, agreger_par_site, agreger_par_marque
 
 # Section 1 — Statut du pipeline
