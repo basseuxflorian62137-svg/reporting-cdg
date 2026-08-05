@@ -1,7 +1,0 @@
-date,site,marque,type_vente,ca_reel,ca_budget,charges,nb_vehicules,mois,trimestre,ecart_valeur,ecart_pct,marge,taux_marge,ca_moyen_vh,statut,ca_reel_usd
-2024-01-01,Paris,Peugeot,VN,450000,400000,350000,45,January 2024,T1,50000,12.5,100000,22.22,10000.0,🟢 Excellent,519832.0
-2024-02-01,Lyon,Renault,VO,280000,300000,220000,28,February 2024,T1,-20000,-6.67,60000,21.43,10000.0,🔴 Alerte,323451.0
-2024-03-01,Paris,Citroën,VN,320000,350000,260000,32,March 2024,T1,-30000,-8.57,60000,18.75,10000.0,🔴 Alerte,369658.0
-2024-04-01,Marseille,Peugeot,VO,190000,200000,160000,19,April 2024,T2,-10000,-5.0,30000,15.79,10000.0,🔴 Alerte,219485.0
-2024-05-01,Lyon,Renault,VN,410000,380000,310000,41,May 2024,T2,30000,7.89,100000,24.39,10000.0,🟢 Excellent,473625.0
-2024-06-01,Paris,Citroën,VO,260000,280000,210000,26,June 2024,T2,-20000,-7.14,50000,19.23,10000.0,🔴 Alerte,300347.0
