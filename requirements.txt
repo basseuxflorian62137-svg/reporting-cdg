@@ -3,3 +3,8 @@ openpyxl
 matplotlib
 streamlit
 anthropic
+plotly
+schedule
+requests
+beautifulsoup4
+lxml
