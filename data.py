@@ -1,18 +1,27 @@
 import pandas as pd
+import os
+import sys
+
+# Ajouter le dossier pipeline au chemin
+sys.path.append(os.path.join(os.path.dirname(__file__), "pipeline"))
+
+from extraction     import creer_export_simule, charger_donnees
+from transformation import transformer_donnees, agreger_par_site, agreger_par_marque
 
 def get_data():
-    data = {
-        "bu":        ["France", "Allemagne", "Espagne", "Italie"],
-        "ca_reel":   [1200000, 980000, 400000, 380000],
-        "ca_budget": [1100000, 1050000, 450000, 350000],
-        "charges":   [900000, 820000, 360000, 340000],
-        "trimestre": ["T1", "T2", "T1", "T2"]
-    }
+    """Charge les données depuis le CSV généré par le pipeline"""
 
-    df = pd.DataFrame(data)
-    df["ecart_valeur"] = df["ca_reel"] - df["ca_budget"]
-    df["ecart_pct"]    = round((df["ecart_valeur"] / df["ca_budget"]) * 100, 2)
-    df["marge"]        = df["ca_reel"] - df["charges"]
-    df["taux_marge"]   = round((df["marge"] / df["ca_reel"]) * 100, 2)
+    chemin_csv = os.path.join(os.path.dirname(__file__), 
+                              "data/output/data_dashboard.csv")
 
-    return df
+    # Si le CSV existe — on le lit directement
+    if os.path.exists(chemin_csv):
+        df = pd.read_csv(chemin_csv)
+        return df
+
+    # Sinon — on génère les données depuis extraction.py
+    else:
+        chemin = creer_export_simule()
+        df_brut = charger_donnees(chemin)
+        df = transformer_donnees(df_brut)
+        return df

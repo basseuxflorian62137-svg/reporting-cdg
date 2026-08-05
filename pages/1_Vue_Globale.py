@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
@@ -19,20 +20,22 @@ col4.metric("Taux de marge moyen", f"{df['taux_marge'].mean():.1f}%")
 
 st.markdown("---")
 
-# Tableau synthèse
-st.subheader("📋 Synthèse par BU")
-st.dataframe(df.style.map(
-    lambda x: "background-color: #C6EFCE" if isinstance(x, float) and x > 0
-    else ("background-color: #FFC7CE" if isinstance(x, float) and x < 0 else ""),
-    subset=["ecart_pct"]
-), use_container_width=True)
+# Tableau synthèse par site
+st.subheader("📋 Synthèse par site")
+
+df_site = df.groupby("site")[["ca_reel", "ca_budget", "marge"]].sum().reset_index()
+df_site["ecart_valeur"] = df_site["ca_reel"] - df_site["ca_budget"]
+df_site["ecart_pct"]    = round(df_site["ecart_valeur"] / df_site["ca_budget"] * 100, 2)
+df_site["taux_marge"]   = round(df_site["marge"] / df_site["ca_reel"] * 100, 2)
+
+st.dataframe(df_site, use_container_width=True)
 
 # Alertes
 st.markdown("---")
 st.subheader("⚠️ Alertes")
-bu_alertes = df[df["ecart_pct"] < 0]
-if len(bu_alertes) > 0:
-    for _, row in bu_alertes.iterrows():
-        st.error(f"🔴 {row['bu']} — Écart : {row['ecart_pct']}%")
+alertes = df_site[df_site["ecart_pct"] < 0]
+if len(alertes) > 0:
+    for _, row in alertes.iterrows():
+        st.error(f"🔴 {row['site']} — Écart : {row['ecart_pct']}%")
 else:
-    st.success("✅ Toutes les BUs sont dans les objectifs !")
+    st.success("✅ Tous les sites sont dans les objectifs !")
