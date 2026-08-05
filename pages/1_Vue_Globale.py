@@ -1,8 +1,7 @@
 import streamlit as st
-import pandas as pd
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from data import get_data
 
 st.title("📌 Vue Globale")
@@ -22,16 +21,15 @@ st.markdown("---")
 
 # Tableau synthèse par site
 st.subheader("📋 Synthèse par site")
-
 df_site = df.groupby("site")[["ca_reel", "ca_budget", "marge"]].sum().reset_index()
 df_site["ecart_valeur"] = df_site["ca_reel"] - df_site["ca_budget"]
 df_site["ecart_pct"]    = round(df_site["ecart_valeur"] / df_site["ca_budget"] * 100, 2)
 df_site["taux_marge"]   = round(df_site["marge"] / df_site["ca_reel"] * 100, 2)
-
 st.dataframe(df_site, use_container_width=True)
 
-# Alertes
 st.markdown("---")
+
+# Alertes
 st.subheader("⚠️ Alertes")
 alertes = df_site[df_site["ecart_pct"] < 0]
 if len(alertes) > 0:
