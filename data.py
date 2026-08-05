@@ -1,34 +1,26 @@
 import pandas as pd
+import numpy as np
 import os
 import sys
 
-# Ajouter le dossier pipeline au chemin
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "pipeline"))
-
-from extraction     import creer_export_simule, charger_donnees
 from transformation import transformer_donnees
 
 def get_data():
-    """Charge les données depuis le CSV ou génère depuis extraction.py"""
+    """Génère les données directement en mémoire"""
 
-    chemin_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                              "data/output/data_dashboard.csv")
+    data = {
+        "date":          ["01/01/2024", "01/02/2024", "01/03/2024",
+                          "01/04/2024", "01/05/2024", "01/06/2024"],
+        "site":          ["Paris", "Lyon", "Paris", "Marseille", "Lyon", "Paris"],
+        "marque":        ["Peugeot", "Renault", "Citroën", "Peugeot", "Renault", "Citroën"],
+        "type_vente":    ["VN", "VO", "VN", "VO", "VN", "VO"],
+        "ca_reel":       [450000, 280000, 320000, 190000, 410000, 260000],
+        "ca_budget":     [400000, 300000, 350000, 200000, 380000, 280000],
+        "charges":       [350000, 220000, 260000, 160000, 310000, 210000],
+        "nb_vehicules":  [45, 28, 32, 19, 41, 26]
+    }
 
-    # Si le CSV existe — on le lit directement
-    if os.path.exists(chemin_csv):
-        df = pd.read_csv(chemin_csv)
-        return df
-
-    # Sinon — on génère depuis extraction.py
-    else:
-        chemin = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                              "data/input/export_carbase.xlsx")
-
-        # Créer le fichier simulé si nécessaire
-        if not os.path.exists(chemin):
-            os.makedirs(os.path.dirname(chemin), exist_ok=True)
-            creer_export_simule()
-
-        df_brut = charger_donnees(chemin)
-        df      = transformer_donnees(df_brut)
-        return df
+    df_brut = pd.DataFrame(data)
+    df      = transformer_donnees(df_brut)
+    return df
