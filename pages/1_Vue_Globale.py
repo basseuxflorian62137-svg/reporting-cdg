@@ -8,8 +8,7 @@ st.title("📌 Vue Globale")
 st.markdown("---")
 
 df = get_data()
-st.write("Colonnes disponibles :", df.columns.tolist())  # ← debug temporaire
-st.write("5 premières lignes :", df.head())              # ← debug temporaire
+
 
 # KPIs
 col1, col2, col3, col4 = st.columns(4)
