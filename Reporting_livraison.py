@@ -14,7 +14,7 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 # Constantes
 # ─────────────────────────────────────────────
-CHEMIN_EXCEL = r"C:\Users\florian\pandas_project\Synthèse VN 2026.xlsx"
+CHEMIN_EXCEL = r"C:\Users\florian\pandas_project\Synthese VN 2026.xlsx"
 CHEMIN_LOGO  = r"C:\Users\florian\pandas_project\logoValauto"
 
 NOMS_SITES = {
