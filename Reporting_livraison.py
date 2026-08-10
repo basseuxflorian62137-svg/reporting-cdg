@@ -17,7 +17,7 @@ st.set_page_config(
 # Constantes
 # ─────────────────────────────────────────────
 CHEMIN_EXCEL = "Synthese VN 2026.xlsx"  # chemin relatif
-CHEMIN_LOGO  = r"C:\Users\florian\suivi_livraisons\logoValauto"
+CHEMIN_LOGO  = "logoValauto"
  
 NOMS_SITES = {
     10: "Valauto RONCQ",
@@ -275,7 +275,7 @@ pivot_site_marge = pivot_site_marge.reindex(
 afficher_tableau_html(
     pivot_site_marge,
     format_fn=lambda x: f"{x:,.0f} €".replace(",", " ") if pd.notna(x) else "–",
-    ligne_total=True
+    ligne_total=False  # ✅
 )
 st.markdown(
     '<p class="note-tableau" style="margin-left: 1.5cm;">* Seules les marges VN conformes (C &amp; NP) sont prises en compte '
@@ -336,7 +336,7 @@ pivot_marque_marge = pivot_marque_marge.reindex(
 afficher_tableau_html(
     pivot_marque_marge,
     format_fn=lambda x: f"{x:,.0f} €".replace(",", " ") if pd.notna(x) else "–",
-    ligne_total=True
+    ligne_total=False  # ✅
 )
 st.markdown(
     '<p class="note-tableau" style="margin-left: 1.5cm;">* Seules les marges VN conformes (C &amp; NP) sont prises en compte '
