@@ -279,7 +279,7 @@ afficher_tableau_html(
     ligne_total=False  # ✅
 )
 st.markdown(
-    '<p class="note-tableau" style="margin-left: 1.5cm;">* Seules les marges VN conformes (C &amp; NP) sont prises en compte '
+    '<p class="note-tableau" style="margin-left: 3cm;">* Seules les marges VN conformes (C &amp; NP) sont prises en compte '
     'dans le calcul des marges moyennes</p>',
     unsafe_allow_html=True
 )
@@ -340,7 +340,7 @@ afficher_tableau_html(
     ligne_total=False  # ✅
 )
 st.markdown(
-    '<p class="note-tableau" style="margin-left: 1.5cm;">* Seules les marges VN conformes (C &amp; NP) sont prises en compte '
+    '<p class="note-tableau" style="margin-left: 3cm;">* Seules les marges VN conformes (C &amp; NP) sont prises en compte '
     'dans le calcul des marges moyennes</p>',
     unsafe_allow_html=True
 )
