@@ -16,7 +16,7 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 # Constantes
 # ─────────────────────────────────────────────
-CHEMIN_EXCEL = r"C:\Users\florian\suivi_livraisons\Synthese VN 2026.xlsx"
+CHEMIN_EXCEL = "Synthese VN 2026.xlsx"  # chemin relatif
 CHEMIN_LOGO  = r"C:\Users\florian\suivi_livraisons\logoValauto"
  
 NOMS_SITES = {
@@ -95,6 +95,13 @@ st.markdown(f"""
 
 st.markdown("""
 <div style="border-top: 1px solid #cccccc; margin-top: -2cm; margin-bottom: 3cm;"></div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+    [data-testid="stSidebar"] { display: none !important; }
+    [data-testid="collapsedControl"] { display: none !important; }
+</style>
 """, unsafe_allow_html=True)
 
  
