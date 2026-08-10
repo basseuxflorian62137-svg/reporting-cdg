@@ -85,7 +85,7 @@ for ext in [".png", ".jpg", ".jpeg", ".PNG", ".JPG"]:
  
 st.markdown(f"""
 <div class="entete-page">
-    <h2 style="font-family: Arial, sans-serif; font-size: 16pt;
+    <h2 style="font-family: Arial, sans-serif; font-size: 48pt;
                color: #094780; font-weight: bold; margin: 0; padding: 0;
                margin-left: 1.5cm;">
         Suivi des livraisons
