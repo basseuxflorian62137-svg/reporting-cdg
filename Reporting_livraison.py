@@ -85,8 +85,9 @@ for ext in [".png", ".jpg", ".jpeg", ".PNG", ".JPG"]:
  
 st.markdown(f"""
 <div class="entete-page">
-    <h2 style="font-family: Arial, sans-serif; font-size: 48pt;
-               color: #094780; font-weight: bold; margin: 0; padding: 0;">
+    <h2 style="font-family: Arial, sans-serif; font-size: 16pt;
+               color: #094780; font-weight: bold; margin: 0; padding: 0;
+               margin-left: 1.5cm;">
         Suivi des livraisons
     </h2>
     {logo_html}
@@ -94,7 +95,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<div style="border-top: 1px solid #cccccc; margin-top: -2cm; margin-bottom: 3cm;"></div>
+<div style="border-top: 1px solid #cccccc; margin-top: -2cm; margin-bottom: 2,5cm;"></div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
@@ -168,7 +169,7 @@ def afficher_tableau_html(df_pivot, format_fn=None, ligne_total=False):
         "background-color: #E8E8E8; padding: 4px 10px; border: 1px solid #ccc; white-space: nowrap;"
     )
  
-    html = '<table style="border-collapse: collapse; font-family: Arial, sans-serif; margin-left: 1.5cm;">'
+    html = '<table style="border-collapse: collapse; font-family: Arial, sans-serif; margin-left: 3cm;">'
  
     # En-tête colonnes
     html += "<thead><tr>"
