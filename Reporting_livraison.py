@@ -8,7 +8,8 @@ import base64
 # ─────────────────────────────────────────────
 st.set_page_config(
     page_title="Suivi des livraisons",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"  # ✅ masque la sidebar
 )
 
 
@@ -100,32 +101,37 @@ st.markdown("""
 # ─────────────────────────────────────────────
 # Chargement des données
 # ─────────────────────────────────────────────
+fichier_upload = st.file_uploader(
+    "📂 Dépose ton fichier Synthese VN 2026.xlsx ici",
+    type=["xlsx"]
+)
+
+if fichier_upload is None:
+    st.info("👆 Dépose ton fichier Excel pour afficher les tableaux.")
+    st.stop()
+
 @st.cache_data
-def charger_donnees():
-    df = pd.read_excel(CHEMIN_EXCEL, sheet_name="Marges VN")
+def charger_donnees(fichier):
+    df = pd.read_excel(fichier, sheet_name="Marges VN")
     df["Date de Livraison"] = pd.to_datetime(df["Date de Livraison"], errors="coerce")
     df["Mois_num"] = df["Date de Livraison"].dt.month
     df["Mois_nom"] = df["Mois_num"].map(MOIS_FR)
     df["Site_nom"] = df["Site"].map(NOMS_SITES).fillna(df["Site"].astype(str))
- 
+
     col_marque = None
     for c in df.columns:
         if "marque" in c.lower():
             col_marque = c
             break
- 
+
     if col_marque:
         df["Marque_nom"] = df[col_marque].map(NOMS_MARQUES).fillna(df[col_marque])
     else:
         df["Marque_nom"] = "Inconnue"
- 
+
     return df, col_marque
- 
-try:
-    df, col_marque = charger_donnees()
-except Exception as e:
-    st.error(f"❌ Impossible de charger le fichier : {e}")
-    st.stop()
+
+df, col_marque = charger_donnees(fichier_upload)
  
 # ─────────────────────────────────────────────
 # Ordre des mois
